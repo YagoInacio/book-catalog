@@ -68,7 +68,7 @@ $ npm install
 # Run the application in development mode
 $ npm run start:dev
 
-# The server will start at port: 3333 - go to http://localhost:3000
+# The server will start at port: 3000 - go to http://localhost:3000
 ```
 
 You can try out the API using the Apollo playground on http://localhost:3000/graphql
