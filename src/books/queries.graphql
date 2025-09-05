@@ -1,9 +1,11 @@
 type Query {
   # Book queries
-  books: [Book!]!
+  books(pagination: PaginationInput): BookConnection!
   book(id: ID!): Book
 
   # Author queries
-  authors: [Author!]!
+  authors(pagination: PaginationInput): AuthorConnection!
   author(id: ID!): Author
+
+  authorBooks(authorId: ID!, pagination: PaginationInput): AuthorBookConnection!
 }

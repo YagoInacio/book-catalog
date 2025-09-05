@@ -12,7 +12,7 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
-type Book {
+type Book implements Node {
   coverImageUrl: String
   createdAt: DateTime!
   description: String
@@ -21,7 +21,18 @@ type Book {
   name: String!
   releaseDate: DateTime!
   type: BookType!
+  authorId: ID!
   updatedAt: DateTime!
   author: Author!
-  authorId: ID!
+}
+
+type BookConnection {
+  edges: [BookEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type BookEdge {
+  node: Book!
+  cursor: String!
 }

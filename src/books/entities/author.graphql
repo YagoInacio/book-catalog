@@ -1,4 +1,4 @@
-type Author {
+type Author implements Node {
   biography: String
   birthDate: DateTime
   createdAt: DateTime!
@@ -8,4 +8,25 @@ type Author {
   updatedAt: DateTime!
   website: String
   books: [Book!]
+}
+
+type AuthorConnection {
+  edges: [AuthorEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type AuthorEdge {
+  node: Author!
+  cursor: String!
+}
+
+type AuthorBookConnection {
+  pageInfo: PageInfo!
+  edges: [AuthorBookEdge!]!
+}
+
+type AuthorBookEdge {
+  node: Book!
+  cursor: String!
 }
