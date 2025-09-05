@@ -8,6 +8,7 @@ type Author implements Node {
   updatedAt: DateTime!
   website: String
   books: [Book!]
+  booksConnection(pagination: PaginationInput): AuthorBookConnection!
 }
 
 type AuthorConnection {

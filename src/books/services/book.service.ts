@@ -7,6 +7,7 @@ import {
   PaginationInput,
   BookConnection,
   AuthorConnection,
+  AuthorBookConnection,
 } from 'src/generated/graphql';
 
 @Injectable()
@@ -224,5 +225,62 @@ export class BooksService {
 
   async findAuthorBooks(authorId: string): Promise<Book[]> {
     return this.mockBooks.filter((book) => book.authorId === authorId);
+  }
+
+  async findAuthorBooksConnection(
+    authorId: string,
+    pagination: PaginationInput,
+  ): Promise<AuthorBookConnection> {
+    const { first, after, last, before } = pagination;
+    const authorBooks = this.mockBooks.filter(
+      (book) => book.authorId === authorId,
+    );
+
+    // Sort books by ID for consistent ordering
+    const sortedBooks = [...authorBooks].sort((a, b) =>
+      a.id.localeCompare(b.id),
+    );
+
+    // Decode cursors
+    const afterCursor = after ? this.decodeCursor(after) : null;
+    const beforeCursor = before ? this.decodeCursor(before) : null;
+
+    let filteredBooks = sortedBooks;
+
+    // Apply cursor filtering
+    if (afterCursor) {
+      filteredBooks = filteredBooks.filter((book) => book.id > afterCursor);
+    }
+    if (beforeCursor) {
+      filteredBooks = filteredBooks.filter((book) => book.id < beforeCursor);
+    }
+
+    // Apply limit
+    let limitedBooks = filteredBooks;
+    if (first && first > 0) {
+      limitedBooks = filteredBooks.slice(0, first);
+    } else if (last && last > 0) {
+      limitedBooks = filteredBooks.slice(-last);
+    }
+
+    // Create edges
+    const edges = limitedBooks.map((book) => ({
+      node: book,
+      cursor: this.encodeCursor(book.id),
+    }));
+
+    // Calculate page info
+    const hasNextPage = first ? filteredBooks.length > first : false;
+    const hasPreviousPage = last ? filteredBooks.length > last : false;
+
+    return {
+      edges,
+      pageInfo: {
+        hasNextPage,
+        hasPreviousPage,
+        startCursor: edges[0]?.cursor || null,
+        endCursor: edges[edges.length - 1]?.cursor || null,
+      },
+    };
   }
 }

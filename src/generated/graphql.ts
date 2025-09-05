@@ -29,6 +29,7 @@ export interface Author extends Node {
     biography?: Nullable<string>;
     birthDate?: Nullable<DateTime>;
     books?: Nullable<Book[]>;
+    booksConnection?: AuthorBookConnection;
     createdAt: DateTime;
     id: string;
     name: string;
@@ -92,7 +93,6 @@ export interface PageInfo {
 
 export interface IQuery {
     author(id: string): Nullable<Author> | Promise<Nullable<Author>>;
-    authorBooks(authorId: string, pagination?: Nullable<PaginationInput>): AuthorBookConnection | Promise<AuthorBookConnection>;
     authors(pagination?: Nullable<PaginationInput>): AuthorConnection | Promise<AuthorConnection>;
     book(id: string): Nullable<Book> | Promise<Nullable<Book>>;
     books(pagination?: Nullable<PaginationInput>): BookConnection | Promise<BookConnection>;

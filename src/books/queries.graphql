@@ -6,6 +6,4 @@ type Query {
   # Author queries
   authors(pagination: PaginationInput): AuthorConnection!
   author(id: ID!): Author
-
-  authorBooks(authorId: ID!, pagination: PaginationInput): AuthorBookConnection!
 }
