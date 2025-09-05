@@ -1,0 +1,11 @@
+type Author {
+  biography: String
+  birthDate: DateTime
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  nationality: String
+  updatedAt: DateTime!
+  website: String
+  books: [Book!]
+}
