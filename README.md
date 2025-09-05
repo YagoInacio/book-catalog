@@ -1,98 +1,101 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/yagoinacio/book-catalog?color=353949">
+
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/yagoinacio/book-catalog">
+
+  <a href="https://github.com/yagoinacio/book-catalog/commits/main">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/yagoinacio/book-catalog">
+  </a>
+
+   <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen">
+
+  <a href="https://yagofaran.dev">
+    <img alt="Made by Yago Faran" src="https://img.shields.io/badge/made_by-Yago_Faran-353949">
+  </a>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+<h1 align="center">
+    <img alt="Logo Yago Faran" title="#YagoFaran" src="https://portfolio.yagofaran.dev/api/images/logo.svg" />
+</h1>
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
+<p align="center">
+ <a href="#-project-title">About</a> •
+ <a href="#-tech-stack">Tech Stack</a> • 
+ <a href="#-features">Features</a> •
+ <!-- <a href="#-layout">Layout</a> •  -->
+ <a href="#-how-it-works">How it works</a> • 
+ <!-- <a href="#-contributors">Contributors</a> •  -->
+ <a href="#-author">Author</a> • 
+ <a href="#-license">License</a>
 </p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+## 💻 Book catalog
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Project description - Simple GraphQL API built for study purposes. exposes mocked data of a list of books and their authors
 
-## Project setup
+## 🛠 Tech Stack
+
+- **[NestJS](https://nestjs.com)**
+- **[GraphQL](https://graphql.org)**
+- **[Apollo](https://www.apollographql.com)**
+
+## 🚀 How it works
+
+This instructions will allow you to run a functional version of the project on your local machine.
+
+### 📋 Pre-requisites
+
+Before you begin, you will need to have the following tools installed on your machine:
+[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/).
+In addition, it is good to have an editor to work with the code like [VSCode](https://code.visualstudio.com/)
+
+#### 🔧 Instalation
 
 ```bash
+# Clone this repository
+$ git clone git@github.com:yagoinacio/book-catalog.git
+
+# Access the project folder cmd/terminal
+$ cd project
+
+# install the dependencies
 $ npm install
 ```
 
-## Compile and run the project
+#### 🎲 Running the application
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
+# Run the application in development mode
 $ npm run start:dev
 
-# production mode
-$ npm run start:prod
+# The server will start at port: 3333 - go to http://localhost:3000
 ```
 
-## Run tests
+You can try out the API using the Apollo playground on http://localhost:3000/graphql
+
+#### ✅ Running automated tests
 
 ```bash
-# unit tests
+# Run automated tests
 $ npm run test
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+# The test automation will run for unit and e2e
 ```
 
-## Deployment
+## 🦸 Author
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+<a href="https://yagofaran.dev">
+ <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/yagoinacio" width="100px;" alt=""/>
+ <br />
+ <sub><b>Yago Faran 💧</b></sub>
+</a>
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+[![Github Badge](https://img.shields.io/badge/-YagoInacio-gray?style=flat-square&labelColor=gray&logo=github&logoColor=white&link=https://github.com/yagoinacio)](https://github.com/yagoinacio)
+[![Linkedin Badge](https://img.shields.io/badge/-Yago-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/yagoinacio/)](https://www.linkedin.com/in/yagoinacio/)
+[![Gmail Badge](https://img.shields.io/badge/-yagofaran@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:yagofaran@gmail.com)](mailto:yagofaran@gmail.com)
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
+## 📝 License
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+This project is under the license [MIT](./LICENSE).
 
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+Made with ❤️ by Yago Faran 👋🏽 [Get in touch!](https://www.linkedin.com/in/yagoinacio/)
