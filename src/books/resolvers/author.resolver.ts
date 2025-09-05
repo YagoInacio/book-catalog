@@ -1,6 +1,7 @@
 // src/books/resolvers/author.resolver.ts
 import { Resolver, Query, Args } from '@nestjs/graphql';
-import { Author } from '../../generated/graphql';
+import { Author, AuthorConnection } from '../../generated/graphql';
+import type { PaginationInput } from '../../generated/graphql';
 import { BooksService } from '../services/book.service';
 
 @Resolver('Author')
@@ -8,8 +9,10 @@ export class AuthorsResolver {
   constructor(private readonly booksService: BooksService) {}
 
   @Query()
-  async authors(): Promise<Author[]> {
-    return this.booksService.findAllAuthors();
+  async authors(
+    @Args('pagination') pagination: PaginationInput,
+  ): Promise<AuthorConnection> {
+    return this.booksService.findAuthorsConnection(pagination);
   }
 
   @Query()

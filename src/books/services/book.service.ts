@@ -86,6 +86,14 @@ export class BooksService {
     });
   }
 
+  private encodeCursor(id: string): string {
+    return Buffer.from(id).toString('base64');
+  }
+
+  private decodeCursor(cursor: string): string {
+    return Buffer.from(cursor, 'base64').toString('utf-8');
+  }
+
   async findAll(): Promise<Book[]> {
     return this.mockBooks;
   }
@@ -108,18 +116,48 @@ export class BooksService {
     const { first, after, last, before } = pagination;
     const allBooks = await this.findAll();
 
-    const edges = allBooks.map((book) => ({
+    // Sort books by ID for consistent ordering (in a real app, you'd sort by a timestamp or other field)
+    const sortedBooks = [...allBooks].sort((a, b) => a.id.localeCompare(b.id));
+
+    // Decode cursors
+    const afterCursor = after ? this.decodeCursor(after) : null;
+    const beforeCursor = before ? this.decodeCursor(before) : null;
+
+    let filteredBooks = sortedBooks;
+
+    // Apply cursor filtering
+    if (afterCursor) {
+      filteredBooks = filteredBooks.filter((book) => book.id > afterCursor);
+    }
+    if (beforeCursor) {
+      filteredBooks = filteredBooks.filter((book) => book.id < beforeCursor);
+    }
+
+    // Apply limit
+    let limitedBooks = filteredBooks;
+    if (first && first > 0) {
+      limitedBooks = filteredBooks.slice(0, first);
+    } else if (last && last > 0) {
+      limitedBooks = filteredBooks.slice(-last);
+    }
+
+    // Create edges
+    const edges = limitedBooks.map((book) => ({
       node: book,
-      cursor: Buffer.from(book.id).toString('base64'),
+      cursor: this.encodeCursor(book.id),
     }));
+
+    // Calculate page info
+    const hasNextPage = first ? filteredBooks.length > first : false;
+    const hasPreviousPage = last ? filteredBooks.length > last : false;
 
     return {
       edges,
       pageInfo: {
-        hasNextPage: false,
-        hasPreviousPage: false,
-        startCursor: edges[0]?.cursor,
-        endCursor: edges[edges.length - 1]?.cursor,
+        hasNextPage,
+        hasPreviousPage,
+        startCursor: edges[0]?.cursor || null,
+        endCursor: edges[edges.length - 1]?.cursor || null,
       },
       totalCount: allBooks.length,
     };
@@ -131,18 +169,54 @@ export class BooksService {
     const { first, after, last, before } = pagination;
     const allAuthors = await this.findAllAuthors();
 
-    const edges = allAuthors.map((author) => ({
+    // Sort authors by ID for consistent ordering
+    const sortedAuthors = [...allAuthors].sort((a, b) =>
+      a.id.localeCompare(b.id),
+    );
+
+    // Decode cursors
+    const afterCursor = after ? this.decodeCursor(after) : null;
+    const beforeCursor = before ? this.decodeCursor(before) : null;
+
+    let filteredAuthors = sortedAuthors;
+
+    // Apply cursor filtering
+    if (afterCursor) {
+      filteredAuthors = filteredAuthors.filter(
+        (author) => author.id > afterCursor,
+      );
+    }
+    if (beforeCursor) {
+      filteredAuthors = filteredAuthors.filter(
+        (author) => author.id < beforeCursor,
+      );
+    }
+
+    // Apply limit
+    let limitedAuthors = filteredAuthors;
+    if (first && first > 0) {
+      limitedAuthors = filteredAuthors.slice(0, first);
+    } else if (last && last > 0) {
+      limitedAuthors = filteredAuthors.slice(-last);
+    }
+
+    // Create edges
+    const edges = limitedAuthors.map((author) => ({
       node: author,
-      cursor: Buffer.from(author.id).toString('base64'),
+      cursor: this.encodeCursor(author.id),
     }));
+
+    // Calculate page info
+    const hasNextPage = first ? filteredAuthors.length > first : false;
+    const hasPreviousPage = last ? filteredAuthors.length > last : false;
 
     return {
       edges,
       pageInfo: {
-        hasNextPage: false,
-        hasPreviousPage: false,
-        startCursor: edges[0]?.cursor,
-        endCursor: edges[edges.length - 1]?.cursor,
+        hasNextPage,
+        hasPreviousPage,
+        startCursor: edges[0]?.cursor || null,
+        endCursor: edges[edges.length - 1]?.cursor || null,
       },
       totalCount: allAuthors.length,
     };
