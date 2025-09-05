@@ -5,6 +5,7 @@ import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
+import { BooksModule } from './books/books.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin
       sortSchema: true,
       introspection: true,
     }),
+    BooksModule,
   ],
   controllers: [AppController],
   providers: [AppService],
